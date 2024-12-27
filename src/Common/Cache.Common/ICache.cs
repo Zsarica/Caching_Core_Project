@@ -19,7 +19,7 @@ namespace Cache.Common
         T GetValue<T>(string key);
         bool IsExpired(string key);
         bool Remove(string key);
-        bool RemoveIsExpired(string key);
+        bool RemoveIfExpired(string key);
         
         
        

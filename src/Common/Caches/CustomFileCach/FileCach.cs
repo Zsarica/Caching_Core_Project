@@ -46,37 +46,66 @@ namespace CustomFileCach
 
         public ReadOnlyDictionary<string, CacheItem> GetItems()
         {
-            throw new NotImplementedException();
+            var files = Directory.GetFiles(FileDir, SearchPattern);
+
+            return files.Select(i => new
+            {
+                Key = Path.GetFileNameWithoutExtension(i)
+            }).ToDictionary(key => key.Key,val => Get(val.Key)).AsReadOnly();
         }
 
         public IEnumerable<string> GetKeys()
         {
-            throw new NotImplementedException();
+            var files = Directory.GetFiles(FileDir, SearchPattern);
+
+            foreach (var item in files)
+            {
+                yield return Path.GetFileNameWithoutExtension(item);
+            }
+        }
+        public IEnumerable<CacheItem> GetValues()
+        {
+            var items  = GetItems();
+            return items.Values;
+
         }
 
         public T GetValue<T>(string key)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<CacheItem> GetValues()
-        {
-            throw new NotImplementedException();
+            var cacheItem = Get(key);
+            return cacheItem == null ? default(T) : cacheItem.GetValue<T>();
         }
 
         public bool IsExpired(string key)
         {
-            throw new NotImplementedException();
+            var cacheItem = Get(key) ?? throw new ArgumentException("cache item not found.");
+
+            return cacheItem.ExpiryDate is not null &&
+                cacheItem.ExpiryDate < fileCacheOptions.TimeProvider.GetLocalNow();
         }
 
         public bool Remove(string key)
         {
-            throw new NotImplementedException();
+            var fileName = GenerateFileName(key);
+            try
+            {
+                File.Delete(fileName);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
 
-        public bool RemoveIsExpired(string key)
+        public bool RemoveIfExpired(string key)
         {
-            throw new NotImplementedException();
+            if (IsExpired(key))
+            {
+                return Remove(key);
+            }
+            return false;
         }
 
         public void Set(string key, object value, TimeSpan? expiry = null)
@@ -97,7 +126,8 @@ namespace CustomFileCach
 
         public bool TryGet(string key, out CacheItem cachItem)
         {
-            throw new NotImplementedException();
+            cachItem = Get(key);
+            return cachItem is not null;
         }
 
         private DateTime? GetExpiryDate(TimeSpan? expiry)
