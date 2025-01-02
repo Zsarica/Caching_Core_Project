@@ -5,7 +5,7 @@ using CustomMemeoryCache;
 MemoryCacheOptions memoryCacheOptions = new MemoryCacheOptionsBuilder()
                                         .WithTimeProvider(TimeProvider.System)
                                         .WithDefaultExpiry(TimeSpan.FromSeconds(10))
-                                        .WithCapacity(2,CacheEvictionPolicy.FirstInFirstOut)
+                                        .WithCapacity(3,CacheEvictionPolicy.FirstInFirstOut)
                                         .Build();
 
 ICache memoryCache = new MemoryCache(memoryCacheOptions);

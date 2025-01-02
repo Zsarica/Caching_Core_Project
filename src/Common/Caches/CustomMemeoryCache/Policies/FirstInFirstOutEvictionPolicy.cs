@@ -9,10 +9,11 @@ namespace CustomMemeoryCache.Policies
         private readonly List<string> items = new();
         public bool Execute(ConcurrentDictionary<string, CacheItem> cacheItems)
         {
-            var firstItemKey = items.First();
+            var firstItemKey = items.FirstOrDefault();
             var cacheItem = cacheItems[firstItemKey];
-
+            items.Remove(firstItemKey);
             return cacheItems.TryRemove(new KeyValuePair<string, CacheItem>(firstItemKey,cacheItem));
+            
         }
 
         public void OnItemAccessed(string key)
@@ -27,7 +28,7 @@ namespace CustomMemeoryCache.Policies
 
         public void OnItemRemoved(string key)
         {
-            throw new NotImplementedException();
+            items.Remove(key);
         }
     }
 }

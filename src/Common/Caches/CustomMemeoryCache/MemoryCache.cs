@@ -28,6 +28,10 @@ namespace CustomMemeoryCache
             if(cacheItems.TryGetValue(key, out var cacheItem))
             {
                 option.EvictionPolicy.OnItemAccessed(key);
+
+                //if (RemoveIfExpired(key))
+                    //return null;
+
                 return cacheItem;
             }
             return default;
@@ -68,13 +72,10 @@ namespace CustomMemeoryCache
         public void Set(string key, object value, TimeSpan? expiry = null)
         {
             ArgumentException.ThrowIfNullOrEmpty(nameof(key));
-
-            EnsureCapacity();
-
-            var expiryDate = GetExpiryDate(expiry);
-
-            cacheItems[key] = new CacheItem(key, value,expiryDate);
             option.EvictionPolicy.onItemAdded(key);
+            var expiryDate = GetExpiryDate(expiry);
+            cacheItems[key] = new CacheItem(key, value, expiryDate);
+            EnsureCapacity();
         }
 
         public bool TryGet(string key, out CacheItem cachItem)

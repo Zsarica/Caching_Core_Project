@@ -22,7 +22,7 @@ builder.Services.AddCustomFileCache(new()
 builder.Services.AddCustomMemoryCache(new MemoryCacheOptionsBuilder()
                                         .WithTimeProvider(TimeProvider.System)
                                         .WithDefaultExpiry(TimeSpan.FromSeconds(10))
-                                        .WithCapacity(2, CacheEvictionPolicy.FirstInFirstOut)
+                                        .WithCapacity(4, CacheEvictionPolicy.LeastFrequentlyUsed)
                                         .Build());
 
 var app = builder.Build();
