@@ -11,5 +11,9 @@ namespace CustomMemeoryCache.Policies
     public interface IEvictionPolicy
     {
         bool Execute(ConcurrentDictionary<string, CacheItem> cacheItems);
+
+        void OnItemAccessed(string key);
+        void OnItemRemoved(string key);
+        void onItemAdded(string key);
     }
 }

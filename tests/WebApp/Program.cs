@@ -1,5 +1,7 @@
 using Cache.Common;
 using CustomFileCach.Extensions;
+using CustomMemeoryCache;
+using CustomMemeoryCache.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,12 @@ builder.Services.AddCustomFileCache(new()
     TimeProvider = TimeProvider.System,
     DefaultExpiry = TimeSpan.FromSeconds(10),
 });
+
+builder.Services.AddCustomMemoryCache(new MemoryCacheOptionsBuilder()
+                                        .WithTimeProvider(TimeProvider.System)
+                                        .WithDefaultExpiry(TimeSpan.FromSeconds(10))
+                                        .WithCapacity(2, CacheEvictionPolicy.FirstInFirstOut)
+                                        .Build());
 
 var app = builder.Build();
 

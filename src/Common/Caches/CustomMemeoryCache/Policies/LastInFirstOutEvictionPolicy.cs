@@ -11,5 +11,20 @@ namespace CustomMemeoryCache.Policies
 
             return cacheItems.TryRemove(firstItem);
         }
+
+        public void OnItemAccessed(string key)
+        {
+            
+        }
+
+        public void onItemAdded(string key)
+        {
+            
+        }
+
+        public void OnItemRemoved(string key)
+        {
+            
+        }
     }
 }

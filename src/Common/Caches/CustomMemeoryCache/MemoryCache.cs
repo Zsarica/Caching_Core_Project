@@ -27,6 +27,7 @@ namespace CustomMemeoryCache
         {
             if(cacheItems.TryGetValue(key, out var cacheItem))
             {
+                option.EvictionPolicy.OnItemAccessed(key);
                 return cacheItem;
             }
             return default;
@@ -55,6 +56,7 @@ namespace CustomMemeoryCache
 
         public bool Remove(string key)
         {
+            option.EvictionPolicy.OnItemRemoved(key);
             return cacheItems.TryRemove(key, out _);
         }
 
@@ -72,6 +74,7 @@ namespace CustomMemeoryCache
             var expiryDate = GetExpiryDate(expiry);
 
             cacheItems[key] = new CacheItem(key, value,expiryDate);
+            option.EvictionPolicy.onItemAdded(key);
         }
 
         public bool TryGet(string key, out CacheItem cachItem)

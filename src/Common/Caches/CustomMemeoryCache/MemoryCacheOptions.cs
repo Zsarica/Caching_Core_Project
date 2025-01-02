@@ -39,6 +39,7 @@ namespace CustomMemeoryCache
             {
                 CacheEvictionPolicy.FirstInFirstOut => new FirstInFirstOutEvictionPolicy(),
                 CacheEvictionPolicy.LastInFirstOut => new LastInFirstOutEvictionPolicy(),
+                CacheEvictionPolicy.LeastFrequentlyUsed => new LFUEvictionPolicy(),
                 _ or CacheEvictionPolicy.None => new NullEvictionPolicy()
             };
 
