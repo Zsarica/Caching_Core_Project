@@ -1,15 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Common\Caches\CustomFileCach\CustomFileCach.csproj" />
-    <ProjectReference Include="..\src\Common\Caches\CustomMemeoryCache\CustomMemeoryCache.csproj" />
+    <ProjectReference Include="..\..\Cache.Common\Cache.Common.csproj" />
   </ItemGroup>
 
 </Project>

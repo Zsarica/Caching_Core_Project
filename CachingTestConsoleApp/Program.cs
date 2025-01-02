@@ -1,5 +1,25 @@
 ﻿using Cache.Common;
 using CustomFileCach;
+using CustomMemeoryCache;
+
+MemoryCacheOptions memoryCacheOptions = new MemoryCacheOptionsBuilder()
+                                        .WithTimeProvider(TimeProvider.System)
+                                        .WithDefaultExpiry(TimeSpan.FromSeconds(10))
+                                        .WithCapacity(2,CacheEvictionPolicy.FirstInFirstOut)
+                                        .Build();
+
+ICache memoryCache = new MemoryCache(memoryCacheOptions);
+
+memoryCache.Set("fullName", "Zekeriya sarıca");
+memoryCache.Set("fullName2", "Zekeriya sarıca_newValue");
+
+bool contains = memoryCache.Contains("fullName");
+
+var readValue = memoryCache.Get("fullName2");
+
+Console.WriteLine("Value = {0}", readValue.Value);
+Console.ReadLine();
+
 
 ICache cache = new FileCach(new()
 {
@@ -12,7 +32,5 @@ ICache cache = new FileCach(new()
 
 //bool contains = cache.Contains("fullName");
 
-var readValue = cache.Get("fullName");
+//var readValue = cache.Get("fullName");
 
-Console.WriteLine("Value = {0}", readValue.Value);
-Console.ReadLine();
