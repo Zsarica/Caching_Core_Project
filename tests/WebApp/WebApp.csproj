@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Common\Caches\CustomFileCach\CustomFileCach.csproj" />
     <ProjectReference Include="..\..\src\Common\Caches\CustomMemeoryCache\CustomMemeoryCache.csproj" />
+    <ProjectReference Include="..\..\src\Common\Caches\CustomSqlServerCache\CustomSqlServerCache.csproj" />
   </ItemGroup>
 
 </Project>

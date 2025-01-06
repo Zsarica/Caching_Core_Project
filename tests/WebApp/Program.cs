@@ -3,6 +3,8 @@ using CustomFileCach.Extensions;
 using CustomMemeoryCache;
 using CustomMemeoryCache.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using CustomSqlServerCache.Application.Extensions;
+using CustomSqlServerCache.Infrastructure.DbContexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+/*
 builder.Services.AddCustomFileCache(new()
 {
     TimeProvider = TimeProvider.System,
@@ -24,6 +27,13 @@ builder.Services.AddCustomMemoryCache(new MemoryCacheOptionsBuilder()
                                         .WithDefaultExpiry(TimeSpan.FromSeconds(10))
                                         .WithCapacity(4, CacheEvictionPolicy.LeastFrequentlyUsed)
                                         .Build());
+*/
+builder.Services.AddSqlServerCache(new SqlServerOptions()
+{
+    ConnectionString = "Data Source=DESKTOP-AUNU480\\SQLEXPRESS;Initial Catalog=CacheDb;Integrated Security=True;Encrypt=False;Trust Server Certificate=True",
+    TimeProvider = TimeProvider.System,
+    DefaultExpiry = TimeSpan.FromSeconds(5)
+}); 
 
 var app = builder.Build();
 
