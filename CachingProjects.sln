@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CachingTestConsoleApp", "Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "tests\WebApp\WebApp.csproj", "{BC46664B-D377-493B-A1A0-B350EFFC4323}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMemeoryCache", "src\Common\Caches\CustomMemeoryCache\CustomMemeoryCache.csproj", "{514F6587-9C98-47CD-92A8-D1F15BD6B67F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomMemeoryCache", "src\Common\Caches\CustomMemeoryCache\CustomMemeoryCache.csproj", "{514F6587-9C98-47CD-92A8-D1F15BD6B67F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSqlServerCache", "src\Common\Caches\CustomSqlServerCache\CustomSqlServerCache.csproj", "{F3F0F566-25E3-4B62-931F-99AC4DA818BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{514F6587-9C98-47CD-92A8-D1F15BD6B67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{514F6587-9C98-47CD-92A8-D1F15BD6B67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{514F6587-9C98-47CD-92A8-D1F15BD6B67F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3F0F566-25E3-4B62-931F-99AC4DA818BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3F0F566-25E3-4B62-931F-99AC4DA818BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3F0F566-25E3-4B62-931F-99AC4DA818BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3F0F566-25E3-4B62-931F-99AC4DA818BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{6EB89B61-2EF3-48B6-91A0-D95DAC6B2387} = {AC5F50BE-1C45-430A-871B-9C31BCFB56B3}
 		{BC46664B-D377-493B-A1A0-B350EFFC4323} = {AC5F50BE-1C45-430A-871B-9C31BCFB56B3}
 		{514F6587-9C98-47CD-92A8-D1F15BD6B67F} = {6F219FBF-0F8C-4302-82F5-CB19C44299C0}
+		{F3F0F566-25E3-4B62-931F-99AC4DA818BA} = {6F219FBF-0F8C-4302-82F5-CB19C44299C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38C1A49E-F9F4-46F2-A374-B785E2C42BB9}
