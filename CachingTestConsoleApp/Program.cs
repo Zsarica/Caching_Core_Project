@@ -12,6 +12,8 @@ ICache memoryCache = new MemoryCache(memoryCacheOptions);
 
 memoryCache.Set("fullName", "Zekeriya sarıca");
 memoryCache.Set("fullName2", "Zekeriya sarıca_newValue");
+memoryCache.Set("fullName3", "Zekeriya sarıca2");
+memoryCache.Set("fullName4", "Zekeriya sarıca_newValue3");
 
 bool contains = memoryCache.Contains("fullName");
 
@@ -19,6 +21,8 @@ var readValue = memoryCache.Get("fullName2");
 
 Console.WriteLine("Value = {0}", readValue.Value);
 Console.ReadLine();
+
+//cursor note
 
 
 ICache cache = new FileCach(new()
